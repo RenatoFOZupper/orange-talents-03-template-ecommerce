@@ -1,4 +1,4 @@
-package br.com.zup.mercadolivre.compartilhado;
+package br.com.zup.mercadolivre.usuarios;
 
 import javax.validation.constraints.NotBlank;
 

@@ -17,8 +17,6 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import br.com.zup.mercadolivre.compartilhado.SenhaLimpa;
-
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -65,4 +63,5 @@ public class Usuario {
 		return "Usuario [id=" + id + ", login=" + email + ", dataDeCriacao=" + dataDeCriacao + "]";
 	}
 	
+
 }
