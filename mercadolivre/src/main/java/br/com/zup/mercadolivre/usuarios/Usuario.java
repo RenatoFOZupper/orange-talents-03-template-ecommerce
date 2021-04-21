@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import br.com.zup.mercadolivre.compartilhado.SenhaLimpa;
 
@@ -33,7 +35,7 @@ public class Usuario {
 	@NotNull
 	@Email
 	@Column(nullable = false, unique = true)
-	private String login;
+	private String email;
 	
 	@NotNull
 	@Length(min = 6)
@@ -44,18 +46,23 @@ public class Usuario {
 	@Column(nullable = false)
 	private LocalDateTime dataDeCriacao = LocalDateTime.now();
 	
-	/* @Deprecated Hibernate Only */
+	
+	/*
+	 * @Deprecated -- Hibernate Only 
+	 */
 	public Usuario() {
 	}
 
-	public Usuario(@NotNull @Email String login, @Valid @NotNull @Length(min = 6) SenhaLimpa senhaLimpa) {
-		this.login = login;
+	public Usuario(@NotNull @Email String email, @Valid @NotNull @Length(min = 6) SenhaLimpa senhaLimpa) {
+		Assert.isTrue(StringUtils.hasLength(email), "email não pode estar em branco");
+		Assert.notNull(senhaLimpa, "o objeto do tipo senha limpa não pode ser nulo");
+		this.email = email;
 		this.senha = senhaLimpa.hash();
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", login=" + login + ", dataDeCriacao=" + dataDeCriacao + "]";
+		return "Usuario [id=" + id + ", login=" + email + ", dataDeCriacao=" + dataDeCriacao + "]";
 	}
 	
 }

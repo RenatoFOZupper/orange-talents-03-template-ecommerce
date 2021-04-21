@@ -10,19 +10,19 @@ public class NovoUsuarioRequest {
 
 	@Email
 	@NotBlank
-	private String login;
+	private String email;
 	
 	@NotBlank
 	@Size(min = 6)
 	private String senha;
 
-	public NovoUsuarioRequest(@Email @NotBlank String login, @NotBlank @Size(min = 6) String senha) {
-		this.login = login;
+	public NovoUsuarioRequest(@Email @NotBlank String email, @NotBlank @Size(min = 6) String senha) {
+		this.email = email;
 		this.senha = senha;
 	}
 
 	public Usuario toModel() {
-		return new Usuario(this.login, new SenhaLimpa(senha));
+		return new Usuario(email, new SenhaLimpa(senha));
 	}
 	
 }
