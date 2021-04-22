@@ -10,12 +10,12 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = { EmailUnicoValidator.class })
+@Constraint(validatedBy = { UniqueValueValidator.class })
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EmailUnico {
+public @interface UniqueValue {
 
-	String message() default "Este email já existe no sistema...";
+	String message() default "Este valor já existe no sistema...";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 	
