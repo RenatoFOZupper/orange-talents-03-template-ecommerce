@@ -48,6 +48,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.POST ,"/usuarios").permitAll()
 		//.antMatchers(HttpMethod.POST ,"/categorias").permitAll()
 		.antMatchers(HttpMethod.POST ,"/auth").permitAll()
+		//.antMatchers("/h2-console/**").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -57,5 +58,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	//Configuracoes de recursos estáticos (js, css, imagens e etc)
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+		 web
+         .ignoring()
+         .antMatchers("/h2-console/**");
 	}
 }
