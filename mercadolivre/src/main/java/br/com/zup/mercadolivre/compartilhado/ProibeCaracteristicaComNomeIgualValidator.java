@@ -7,7 +7,7 @@ import org.springframework.validation.Validator;
 
 import br.com.zup.mercadolivre.produtos.NovoProdutoRequest;
 
-public class ProibeCaracteristicaComNomeIgual implements Validator {
+public class ProibeCaracteristicaComNomeIgualValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {

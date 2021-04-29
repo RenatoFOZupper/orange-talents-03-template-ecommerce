@@ -72,11 +72,17 @@ public class Produto {
 	@ManyToOne
 	private Usuario dono;
 
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<ImagemProduto> imagens = new HashSet<>();
+
+	@Deprecated
+	public Produto() {
+	}
+
 	public Produto(@NotBlank String nome, @NotNull @Positive BigDecimal valor, @Positive Integer quantidade,
 			@NotBlank @Length(max = 1000) String descricao, @NotNull @Valid Categoria categoria,
 			@Size(min = 3) @Valid Collection<NovaCaracteristicaProdutoRequest> caracteristicas,
 			@NotNull @Valid Usuario dono) {
-		super();
 		this.nome = nome;
 		this.valor = valor;
 		this.quantidade = quantidade;
@@ -93,7 +99,7 @@ public class Produto {
 	public String toString() {
 		return "Produto [id=" + id + ", nome=" + nome + ", valor=" + valor + ", quantidade=" + quantidade
 				+ ", descricao=" + descricao + ", criadoEm=" + criadoEm + ", categoria=" + categoria.getNome()
-				+ ", caracteristicas=" + caracteristicas + ", dono=" + dono.getEmail() + "]";
+				+ ", caracteristicas=" + caracteristicas + ", dono=" + dono.getEmail() + ", imagens=" + imagens + "]";
 	}
 
 	@Override
@@ -119,6 +125,24 @@ public class Produto {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+	
+	/*
+	 *  Método que associa as imagens ao produto da request
+	 */	
+
+	public void anexa(Set<String> links) {
+		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link))
+				.collect(Collectors.toSet());
+		this.imagens.addAll(imagens);
+	}
+
+	/*
+	 *  Método para validar se o usuário do request é realmente o dono do produto
+	 */	
+	
+	public boolean pertenceAoUsuario(Usuario possivelDono) {
+		return this.dono.equals(possivelDono);
 	}
 
 }

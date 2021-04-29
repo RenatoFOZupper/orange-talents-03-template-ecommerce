@@ -14,11 +14,13 @@ import com.sun.istack.NotNull;
 
 import br.com.zup.mercadolivre.categorias.Categoria;
 import br.com.zup.mercadolivre.compartilhado.annotations.ExistsId;
+import br.com.zup.mercadolivre.compartilhado.annotations.UniqueValue;
 import br.com.zup.mercadolivre.usuarios.Usuario;
 
 public class NovoProdutoRequest {
 
 	@NotBlank
+	@UniqueValue(domainClass = Produto.class, fieldName = "nome")
 	private String nome;
 
 	@NotNull

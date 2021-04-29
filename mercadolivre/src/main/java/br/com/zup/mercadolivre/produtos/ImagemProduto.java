@@ -1,7 +1,6 @@
 package br.com.zup.mercadolivre.produtos;
 
-import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,52 +10,45 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.URL;
+
 @Entity
-public class CaracteristicaProduto implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class ImagemProduto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
-	private String nome;
-
-	@NotBlank
-	private String descricao;
-
-	@ManyToOne
 	@NotNull
 	@Valid
+	@ManyToOne
 	private Produto produto;
-	
+
+	@URL
+	@NotBlank
+	@Column(nullable = false)
+	private String link;
+
+	//Hibernate - Only
 	@Deprecated
-	public CaracteristicaProduto() { }
+	public ImagemProduto() {
+	}
 
-	public CaracteristicaProduto(@NotBlank String nome, @NotBlank String descricao, @NotNull @Valid Produto produto) {
-		this.nome = nome;
-		this.descricao = descricao;
+	public ImagemProduto(@NotNull @Valid Produto produto, @URL @NotBlank String link) {
 		this.produto = produto;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
+		this.link = link;
 	}
 
 	@Override
 	public String toString() {
-		return "CaracteristicasDoProduto [nome=" + nome + ", descricao=" + descricao + "]";
+		return "ImagemProduto [id=" + id + ", link=" + link + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((link == null) ? 0 : link.hashCode());
 		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
 		return result;
 	}
@@ -69,11 +61,11 @@ public class CaracteristicaProduto implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CaracteristicaProduto other = (CaracteristicaProduto) obj;
-		if (nome == null) {
-			if (other.nome != null)
+		ImagemProduto other = (ImagemProduto) obj;
+		if (link == null) {
+			if (other.link != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!link.equals(other.link))
 			return false;
 		if (produto == null) {
 			if (other.produto != null)
@@ -83,6 +75,4 @@ public class CaracteristicaProduto implements Serializable {
 		return true;
 	}
 
-	
-	
 }

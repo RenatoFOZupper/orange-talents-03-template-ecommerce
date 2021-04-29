@@ -13,26 +13,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.mercadolivre.compartilhado.ProibeCaracteristicaComNomeIgual;
+import br.com.zup.mercadolivre.compartilhado.ProibeCaracteristicaComNomeIgualValidator;
 import br.com.zup.mercadolivre.usuarios.Usuario;
 
 @RestController
 public class ProdutoController {
-	
+
 	@PersistenceContext
 	EntityManager em;
-	
+
 	@InitBinder
 	public void init(WebDataBinder web) {
-		web.addValidators(new ProibeCaracteristicaComNomeIgual());
+		web.addValidators(new ProibeCaracteristicaComNomeIgualValidator());
 	}
 
 	@PostMapping(value = "/produtos")
 	@Transactional
-	public ResponseEntity<String> cadastra(@RequestBody @Valid NovoProdutoRequest request, @AuthenticationPrincipal Usuario dono) {
+	public ResponseEntity<String> cadastra(@RequestBody @Valid NovoProdutoRequest request,
+			@AuthenticationPrincipal Usuario dono) {
 		Produto produto = request.toModel(em, dono);
 		em.persist(produto);
 		return ResponseEntity.ok().build();
 	}
-	
+
 }
