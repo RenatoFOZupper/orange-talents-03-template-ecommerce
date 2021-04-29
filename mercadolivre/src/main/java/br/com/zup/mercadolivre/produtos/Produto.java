@@ -126,10 +126,10 @@ public class Produto {
 			return false;
 		return true;
 	}
-	
+
 	/*
-	 *  Método que associa as imagens ao produto da request
-	 */	
+	 * Método que associa as imagens ao produto da request
+	 */
 
 	public void anexa(Set<String> links) {
 		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link))
@@ -138,9 +138,9 @@ public class Produto {
 	}
 
 	/*
-	 *  Método para validar se o usuário do request é realmente o dono do produto
-	 */	
-	
+	 * Método para validar se o usuário do request é realmente o dono do produto
+	 */
+
 	public boolean pertenceAoUsuario(Usuario possivelDono) {
 		return this.dono.equals(possivelDono);
 	}
