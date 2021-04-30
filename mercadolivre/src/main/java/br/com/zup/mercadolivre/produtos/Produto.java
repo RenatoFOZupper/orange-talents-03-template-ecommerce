@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -64,7 +65,7 @@ public class Produto {
 
 	@Size(min = 3)
 	@Valid
-	@OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
 
 	@NotNull
@@ -72,7 +73,7 @@ public class Produto {
 	@ManyToOne
 	private Usuario dono;
 
-	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Set<ImagemProduto> imagens = new HashSet<>();
 
 	@Deprecated
@@ -143,6 +144,10 @@ public class Produto {
 
 	public boolean pertenceAoUsuario(Usuario possivelDono) {
 		return this.dono.equals(possivelDono);
+	}
+
+	public Usuario getDono() {
+		return dono;
 	}
 
 }

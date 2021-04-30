@@ -5,7 +5,7 @@ INSERT INTO categorias(nome) VALUES ('Eletronicos');
 INSERT INTO categorias(nome, categoria_mae_id) VALUES ('Computador', 1);
 
 INSERT INTO produto (nome, valor, quantidade, descricao, criado_em, categoria_id, dono_id) VALUES ('computador', 1000.0, 2, 'computador muito rapido', now(), 2, 1); 
-INSERT INTO produto (nome, valor, quantidade, descricao, criado_em, categoria_id, dono_id) VALUES ('notebook', 2000.0, 2, 'notebook da tectoy', now(), 2, 1); 
+INSERT INTO produto (nome, valor, quantidade, descricao, criado_em, categoria_id, dono_id) VALUES ('notebook', 2000.0, 2, 'notebook da tectoy', now(), 2, 2); 
 
 INSERT INTO caracteristica_produto (nome, descricao, produto_id) VALUES ('processador', 'i5-2.5GHz', 1);
 INSERT INTO caracteristica_produto (nome, descricao, produto_id) VALUES ('HDD', '01 terabyte', 1);
@@ -16,4 +16,4 @@ INSERT INTO caracteristica_produto (nome, descricao, produto_id) VALUES ('HDD', 
 INSERT INTO caracteristica_produto (nome, descricao, produto_id) VALUES ('RAM', '04 gigabytes', 2);
 
 INSERT INTO imagem_produto (link, produto_id) VALUES ('http://bucket.io/checkout-extendido-15-04.txt', 1);
-INSERT INTO imagem_produto (link, produto_id) VALUES ('http://bucket.io/desafio-final.rtf', 1);
+INSERT INTO imagem_produto (link, produto_id) VALUES ('http://bucket.io/desafio-final.rtf', 2);

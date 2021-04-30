@@ -33,7 +33,7 @@ public class NovaOpiniaoProdutoRequest {
 		this.descricao = descricao;
 	}
 	
-	// Método que converte um objeto NovaOpiniaoProdutoRequest para NovaOpiniao
+	// Método que converte um objeto NovaOpiniaoProdutoRequest para OpiniaoProduto
 
 	public OpiniaoProduto toModel(EntityManager em, @Valid Produto produto, @Valid Usuario usuarioLogado) {
 		return new OpiniaoProduto(this.nota, this.titulo, this.descricao, produto, usuarioLogado);
