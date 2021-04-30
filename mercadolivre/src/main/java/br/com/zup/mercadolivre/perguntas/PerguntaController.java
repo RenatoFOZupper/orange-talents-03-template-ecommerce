@@ -18,10 +18,10 @@ import br.com.zup.mercadolivre.usuarios.Usuario;
 @RestController
 public class PerguntaController {
 	
-	private final EnviaEmailVendedor enviaEmailVendedor;
+	private final Emails emails;
 	
-	public PerguntaController(EnviaEmailVendedor enviaEmailVendedor) {
-		this.enviaEmailVendedor = enviaEmailVendedor;
+	public PerguntaController(Emails emails) {
+		this.emails = emails;
 	}
 
 	@PersistenceContext
@@ -35,7 +35,7 @@ public class PerguntaController {
 		
 		Pergunta pergunta = request.toModel(produto, usuarioLogado);
 		em.persist(pergunta);
-		enviaEmailVendedor.envia(pergunta);
+		emails.novaPergunta(pergunta);
 		return ResponseEntity.ok().build();
 	}
 	

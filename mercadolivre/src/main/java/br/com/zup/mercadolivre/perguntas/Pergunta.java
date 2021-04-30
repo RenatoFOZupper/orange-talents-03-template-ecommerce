@@ -39,4 +39,12 @@ public class Pergunta {
 		this.usuarioDaPergunta = usuarioDaPergunta;
 	}
 
+	public Usuario getPotencialInteressado() {
+		return usuarioDaPergunta;
+	}
+
+	public Usuario getDonoProduto() {
+		return produto.getDono();
+	}
+
 }

@@ -3,13 +3,16 @@ package br.com.zup.mercadolivre.perguntas;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DisparaEmailFakeAoVendedor implements EnviaEmailVendedor {
+public class DisparaEmailFakeAoVendedor implements Mailer {
 
-	public void envia(Pergunta pergunta) {
-		System.out.println("De: usuario@gmail.com");
-		System.out.println("Para: admin@gmail.com");
-		System.out.println("Mensagem: nova pergunta");
-		
+	@Override
+	public void send(String body, String subject, String nameFrom, String from,
+			String to) {
+		System.out.println(body);
+		System.out.println(subject);
+		System.out.println(nameFrom);
+		System.out.println(from);
+		System.out.println(to);
 	}
 
 	
