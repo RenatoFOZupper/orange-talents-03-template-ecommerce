@@ -1,6 +1,5 @@
 package br.com.zup.mercadolivre.opinioes;
 
-import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -29,13 +28,12 @@ public class NovaOpiniaoProdutoRequest {
 	public NovaOpiniaoProdutoRequest(@Min(1) @Max(5) @NotBlank Integer nota, @NotBlank String titulo,
 			@NotBlank @Length(max = 500) String descricao) {
 		this.nota = nota;
-		this.titulo = titulo;
-		this.descricao = descricao;
+		this.titulo = titulo;		this.descricao = descricao;
 	}
 	
 	// Método que converte um objeto NovaOpiniaoProdutoRequest para OpiniaoProduto
 
-	public OpiniaoProduto toModel(EntityManager em, @Valid Produto produto, @Valid Usuario usuarioLogado) {
+	public OpiniaoProduto toModel(@Valid Produto produto, @Valid Usuario usuarioLogado) {
 		return new OpiniaoProduto(this.nota, this.titulo, this.descricao, produto, usuarioLogado);
 	}
 

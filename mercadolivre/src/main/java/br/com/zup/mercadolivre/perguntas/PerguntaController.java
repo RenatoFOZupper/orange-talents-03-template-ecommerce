@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,6 @@ public class PerguntaController {
 	private final EnviaEmailVendedor enviaEmailVendedor;
 	
 	public PerguntaController(EnviaEmailVendedor enviaEmailVendedor) {
-		super();
 		this.enviaEmailVendedor = enviaEmailVendedor;
 	}
 
@@ -31,11 +31,12 @@ public class PerguntaController {
 	@Transactional
 	public ResponseEntity<?> cadastra(@PathVariable("id") Long idProduto, @RequestBody NovaPerguntaRequest request, @AuthenticationPrincipal Usuario usuarioLogado) {
 		Produto produto = em.find(Produto.class, idProduto);
+		if (produto == null) { return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); }
 		
-		Pergunta pergunta = request.toModel(em, produto, usuarioLogado);
+		Pergunta pergunta = request.toModel(produto, usuarioLogado);
 		em.persist(pergunta);
-		enviaEmailVendedor.envia(produto, pergunta, usuarioLogado);
-		return ResponseEntity.ok().body(pergunta.toString());
+		enviaEmailVendedor.envia(pergunta);
+		return ResponseEntity.ok().build();
 	}
 	
 }

@@ -31,7 +31,7 @@ public class OpiniaoController {
 		if (produto == null)
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produto inválido...");
 
-		OpiniaoProduto opiniaoProduto = request.toModel(em, produto, usuarioLogado);
+		OpiniaoProduto opiniaoProduto = request.toModel(produto, usuarioLogado);
 		em.persist(opiniaoProduto);
 		return ResponseEntity.ok().body("Opinião cadastrada com sucesso!!");
 	}
