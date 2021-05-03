@@ -23,11 +23,14 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Enumerated(EnumType.STRING)
 	private StatusCompra status = StatusCompra.INICIADA;
 	
 	@ManyToOne
 	@NotNull
 	private Produto produto;
+	
+	private BigDecimal precoUnitario;
 	
 	@NotNull
 	private Integer quantidade;
@@ -48,6 +51,7 @@ public class Compra {
 		this.quantidade = quantidadeInformada;
 		this.comprador = possivelComprador;
 		this.gateway = formaPagamentoSelecionado;
+		this.precoUnitario = produtoInformado.getValor();
 	}
 
 	public Long getId() {
@@ -76,8 +80,8 @@ public class Compra {
 				+ ", gateway=" + gateway + ", comprador=" + comprador + "]";
 	}
 
-	public BigDecimal getValor() {
-		return produto.getValor();
+	public BigDecimal getPrecoUnitario() {
+		return precoUnitario;
 	}
 	
 	public StatusCompra getStatus() {
