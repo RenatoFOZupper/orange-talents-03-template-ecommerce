@@ -4,8 +4,8 @@ INSERT INTO usuarios(email, senha, data_de_criacao) VALUES('user@email.com', '$2
 INSERT INTO categorias(nome) VALUES ('Eletronicos');
 INSERT INTO categorias(nome, categoria_mae_id) VALUES ('Computador', 1);
 
-INSERT INTO produto (nome, valor, quantidade, descricao, criado_em, categoria_id, dono_id) VALUES ('computador', 1000.0, 2, 'computador muito rapido', now(), 2, 1); 
-INSERT INTO produto (nome, valor, quantidade, descricao, criado_em, categoria_id, dono_id) VALUES ('notebook', 2000.0, 2, 'notebook da tectoy', now(), 2, 2); 
+INSERT INTO produto (nome, valor, quantidade, descricao, criado_em, categoria_id, dono_id) VALUES ('computador', 1000.0, 100, 'computador muito rapido', now(), 2, 1); 
+INSERT INTO produto (nome, valor, quantidade, descricao, criado_em, categoria_id, dono_id) VALUES ('notebook', 2000.0, 50, 'notebook da tectoy', now(), 2, 2); 
 
 INSERT INTO caracteristica_produto (nome, descricao, produto_id) VALUES ('processador', 'i5-2.5GHz', 1);
 INSERT INTO caracteristica_produto (nome, descricao, produto_id) VALUES ('HDD', '01 terabyte', 1);

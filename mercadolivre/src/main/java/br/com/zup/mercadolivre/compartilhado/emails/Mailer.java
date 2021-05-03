@@ -1,4 +1,4 @@
-package br.com.zup.mercadolivre.perguntas;
+package br.com.zup.mercadolivre.compartilhado.emails;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

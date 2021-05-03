@@ -1,4 +1,4 @@
-package br.com.zup.mercadolivre.perguntas;
+package br.com.zup.mercadolivre.compartilhado.emails;
 
 import org.springframework.stereotype.Component;
 
