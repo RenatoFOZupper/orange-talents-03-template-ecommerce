@@ -56,6 +56,9 @@ public class OpiniaoProduto {
 	@Valid
 	@ManyToOne
 	private Usuario usuarioLogado;
+	
+	@Deprecated
+	public OpiniaoProduto() { }
 
 	public OpiniaoProduto(@Min(1) @Max(5) @NotNull Integer nota, @NotBlank String titulo,
 			@NotBlank @Length(max = 500) String descricao, @Valid Produto produto, @Valid Usuario usuarioLogado) {
@@ -69,6 +72,16 @@ public class OpiniaoProduto {
 		this.usuarioLogado = usuarioLogado;
 	}
 
-	
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public Integer getNota() {
+		return nota;
+	}
 
 }

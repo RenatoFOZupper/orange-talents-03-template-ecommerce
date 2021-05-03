@@ -30,6 +30,9 @@ public class Pergunta {
 
 	@ManyToOne
 	private Usuario usuarioDaPergunta;
+	
+	@Deprecated
+	public Pergunta() { }
 
 	public Pergunta(@NotBlank String titulo, @NotBlank @Valid Produto produto,
 			@NotBlank @Valid Usuario usuarioDaPergunta) {
@@ -45,6 +48,10 @@ public class Pergunta {
 
 	public Usuario getDonoProduto() {
 		return produto.getDono();
+	}
+
+	public String getTitulo() {
+		return titulo;
 	}
 
 }

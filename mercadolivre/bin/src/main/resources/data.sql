@@ -17,9 +17,3 @@ INSERT INTO caracteristica_produto (nome, descricao, produto_id) VALUES ('RAM', 
 
 INSERT INTO imagem_produto (link, produto_id) VALUES ('http://bucket.io/checkout-extendido-15-04.txt', 1);
 INSERT INTO imagem_produto (link, produto_id) VALUES ('http://bucket.io/desafio-final.rtf', 2);
-
-INSERT INTO pergunta (titulo, criado_em, produto_id, usuario_da_pergunta_id) VALUES ('Funciona mesmo?', now(), 1, 1);
-INSERT INTO pergunta (titulo, criado_em, produto_id, usuario_da_pergunta_id) VALUES ('É novo?', now(), 1, 1);
-
-INSERT INTO opiniao_produto (nota, titulo, descricao, produto_id, usuario_logado_id) VALUES (1, 'Ruim', 'trava muito', 1, 2); 
-INSERT INTO opiniao_produto (nota, titulo, descricao, produto_id, usuario_logado_id) VALUES (5, 'Otimo', 'Perfeito!!', 1, 2); 

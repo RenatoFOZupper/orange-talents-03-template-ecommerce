@@ -74,5 +74,9 @@ public class ImagemProduto {
 			return false;
 		return true;
 	}
+	
+	public String getLink() {
+		return link;
+	}
 
 }
